@@ -1,0 +1,3 @@
+Hello Human! This is Sai, a Machine Learning Research Engineer and technical artist based in Bangalore, working at the intersection of software development, robotics, and 3D graphics. Over the years, I’ve contributed to projects like building synthetic data pipelines, developing  plugins for Unreal Engine and Blender, and creating simulations, autonomous functions and perception modules in robotics. I teach in my spare time, and also write interactive blog posts.
+
+Other than that, I’m deeply invested in understanding the human condition 🎭 and the expression of life in all its diverse forms 🌸🦎, exploring metaphysics 💭 and seeking ways to reduce suffering on a personal level , hoping I'd be able to also tend to others I come across 🫂.

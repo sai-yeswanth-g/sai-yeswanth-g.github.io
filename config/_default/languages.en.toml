@@ -1,0 +1,54 @@
+disabled = false
+languageCode = "en"
+languageName = "English"
+weight = 1
+title = "Sai"
+
+[params]
+  displayName = "EN"
+  isoCode = "en"
+  rtl = false
+  dateFormat = "2 January 2006"
+  # logo = "img/logo.png"
+  # secondaryLogo = "img/secondary-logo.png"
+  # description = "My awesome website"
+  # copyright = "Copy, _right?_ :thinking_face:"
+
+[params.author]
+  name = "Sai Yeswanth"
+  email = "sai.yeswanth.g@gmail.com"
+  image = "images/me.jpg"
+  imageQuality = 96
+  headline = "3D deep learning - Computer Graphics - Computer Vision - Game Programming"
+  bio = "unbecoming is freedom"
+  links = [
+    { email = "mailto:sai.yeswanth.g@gmail.com" },
+    { github = "https://github.com/sai-yeswanth-g" },
+    { itch-io = "https://six-ten.itch.io" },
+    { linkedin = "https://linkedin.com/in/saiyeswanthg" },
+    # { mastodon = "https://mastodon.instance/@username" },
+    # { medium = "https://medium.com/username" },
+    # { microsoft = "https://www.microsoft.com/" },
+    # { orcid = "https://orcid.org/userid" },
+    # { patreon = "https://www.patreon.com/username" },
+    # { pinterest = "https://pinterest.com/username" },
+    # { reddit = "https://reddit.com/user/username" },
+    # { researchgate = "https://www.researchgate.net/profile/username" },
+    # { slack = "https://workspace.url/team/userid" },
+    # { snapchat = "https://snapchat.com/add/username" },
+    # { soundcloud = "https://soundcloud.com/username" },
+    # { spotify = "https://open.spotify.com/user/userid" },
+    # { stack-overflow = "https://stackoverflow.com/users/userid/username" },
+    # { steam = "https://steamcommunity.com/profiles/userid" },
+    # { telegram = "https://t.me/username" },
+    # { threads = "https://www.threads.net/@username" },
+    # { tiktok = "https://tiktok.com/@username" },
+    # { tumblr = "https://username.tumblr.com" },
+    # { twitch = "https://twitch.tv/username" },
+    # { twitter = "https://twitter.com/username" },
+    # { x-twitter = "https://twitter.com/username" },
+    # { whatsapp = "https://wa.me/phone-number" },
+    # { youtube = "https://youtube.com/username" },
+    # { ko-fi = "https://ko-fi.com/username" },
+    # { codeberg = "https://codeberg.org/username"},
+  ]

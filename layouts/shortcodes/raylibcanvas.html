@@ -1,0 +1,19 @@
+<!-- shortcodes/i3d_instance.html -->
+
+<div id="raylib-instance-{{ .Get "id" }}" style="text-align: center">
+    <canvas id="gameCanvas-{{ .Get "id" }}" style="display: block; margin: 0 auto"></canvas>
+</div>
+
+<script type="module">
+    
+    import initModule from'{{ .Get "scriptPath" }}';  // Import the entire module
+    const localModule = {};  // Ensure no spaces around {{.Get "id"}}
+    const container = document.getElementById('raylib-instance-{{ .Get "id" }}')
+    const canvas = document.getElementById('gameCanvas-{{ .Get "id" }}')
+    canvas.width = 400 ;
+    canvas.height = 400 ;
+    initModule(localModule);
+    localModule.canvas = canvas;
+    
+  </script>
+  
