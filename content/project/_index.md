@@ -1,5 +1,5 @@
 ---
-title: "Project1"
+title: "PointOctree"
 date: 2025-01-11T13:55:59+05:30
 draft: true
 description: "Short description of the project"

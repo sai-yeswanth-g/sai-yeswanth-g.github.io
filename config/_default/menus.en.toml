@@ -15,15 +15,15 @@
  pageRef = "posts"
  weight = 10
 
- [[main]]
- name = "Tags"
- pageRef = "tags"
- weight = 27
+#  [[main]]
+#  name = "Tags"
+#  pageRef = "tags"
+#  weight = 27
 
- [[main]]
- name = "Categories"
- pageRef = "categories"
- weight = 28
+#  [[main]]
+#  name = "Categories"
+#  pageRef = "categories"
+#  weight = 28
 
 # [[main]]
 #  name = "Parent"
@@ -57,15 +57,15 @@
  pageRef = "project"
  weight = 20
 
-[[main]]
- name = "workXP"
- pageRef = "work_exp"
- weight = 25
+# [[main]]
+#  name = "workXP"
+#  pageRef = "work_exp"
+#  weight = 25
 
- [[main]]
- name = "Artwork"
- pageRef = "artwork"
- weight = 30
+#  [[main]]
+#  name = "Artwork"
+#  pageRef = "artwork"
+#  weight = 30
 
 # -- Footer Menu --
 # The footer menu is displayed at the bottom of the page, just before
