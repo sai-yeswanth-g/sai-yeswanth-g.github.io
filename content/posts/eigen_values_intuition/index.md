@@ -14,14 +14,14 @@ some characteristics of such transformation are of importance to us, that give u
 this is not always possible. for example if we want to figure out what \\(x\\) and \\(y\\) are given their product is \\(0\\), it's not possible. if one of them is zero, the other can be any number. so we see that some operations have singularities that collapse means to apply inverse. or for some values the information goes into singularity and we run out of ways to work our way back. we find such singularity cases in matrix multiplications too.
 
 ## volume of vectors
-we are well familiar with vectors have a direction and length. but we can also associate Area (2D), Volume (3D) or Hyper Volume in higher dimensions if the vector has more than 3 elements.
+we are well familiar with vectors having a direction and length. but we can also associate Area (2D), Volume (3D) or Hyper Volume in higher dimensions if the vector has more than 3 elements.
 
 ![](images/vector_volume.png)
 
 so when transformed by a matrix, the vector changes and this changes the associated Area/Volume/Hyper-Volume. the factor by which the volume changes is given by the determinant of that matrix. 
 
 ## Transformation by Singular Matrices
-when multiplied by singular matrices however, the determinant becomes zero. this happens when there is a linear dependency between rows or columns of a matrix. so if there are \\(n\\) columns, one of more of those can be obtained by a linear combination of other columns. this means the columns don't actually span the space with \\(n\\) dimensions, and the hyper cuboid formed is collapsed to a subspace which is spanned by the columns. this is called rank deficiency.
+when multiplied by singular matrices however, the determinant becomes zero. this happens when there is a linear dependency between rows or columns of a matrix. so if there are \\(n\\) columns, one of more of those can be obtained by a linear combination of other columns. this means the columns don't actually span the space with \\(n\\) dimensions, and the hyper cuboid formed is collapsed to a subspace which is spanned by the columns. the matrix in this case is said to have rank deficiency.
 
 ## Eigen vectors and Values
 for any non zero vector \\(\vec v \\), if a linear transformation \\( A_{n \times n} \\) only scales the vector by some magniture \\( \lambda \\) then \\( \vec v \\) is called an eigen vector and the scaling factor \\( \lambda \\) is called the eigen value.
