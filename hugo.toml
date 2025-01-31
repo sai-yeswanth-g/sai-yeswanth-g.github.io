@@ -3,27 +3,27 @@ languageCode = 'en-us'
 title = 'Something'
 theme = "blowfish"
 
-[menu]
-  [[menu.main]]
-    identifier = "about"
-    name = "About"
-    url = "/about/"
-    weight = 10
-  [[menu.main]]
-    identifier = "experience"
-    name = "Experience"
-    url = "/exp/"
-    weight = 10
-  [[menu.main]]
-    identifier = "blog"
-    name = "Blog"
-    url = "/blog/"
-    weight = 10
-  [[menu.main]]
-    identifier = "projects"
-    name = "Projects"
-    url = "/projects/"
-    weight = 10
+# [menu]
+#   [[menu.main]]
+#     identifier = "about"
+#     name = "About"
+#     url = "/about/"
+#     weight = 10
+#   [[menu.main]]
+#     identifier = "experience"
+#     name = "Experience"
+#     url = "/exp/"
+#     weight = 10
+#   [[menu.main]]
+#     identifier = "blog"
+#     name = "Blog"
+#     url = "/blog/"
+#     weight = 10
+#   [[menu.main]]
+#     identifier = "projects"
+#     name = "Projects"
+#     url = "/projects/"
+#     weight = 10
 
 [params]
     homepage.layout = "profile"
