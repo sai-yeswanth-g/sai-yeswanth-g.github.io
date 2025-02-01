@@ -23,6 +23,9 @@ so when transformed by a matrix, the vector changes and this changes the associa
 ## Transformation by Singular Matrices
 when multiplied by singular matrices however, the determinant becomes zero. this happens when there is a linear dependency between rows or columns of a matrix. so if there are \\(n\\) columns, one of more of those can be obtained by a linear combination of other columns. this means the columns don't actually span the space with \\(n\\) dimensions, and the hyper cuboid formed is collapsed to a subspace which is spanned by the columns. the matrix in this case is said to have rank deficiency.
 
+{{< raylibcanvas scriptPath="/posts/eigen_values_intuition/interactive/transform.js" >}}
+
+since the third column/basis, the blue vector lies in the same plane as the other two vectors, the transformation can only create planes and hence the determinant is 0, because this collapses points onto a plane.
 ## Eigen vectors and Values
 for any non zero vector \\(\vec v \\), if a linear transformation \\( A_{n \times n} \\) only scales the vector by some magniture \\( \lambda \\) then \\( \vec v \\) is called an eigen vector and the scaling factor \\( \lambda \\) is called the eigen value.
 $$ A \cdot \vec v = \lambda \vec v $$
