@@ -1,7 +1,7 @@
 ---
 title: "Z order curve"
 date: 2025-02-03T22:21:50+05:30
-draft: true
+draft: false
 tags: []
 categories: []
 ---
