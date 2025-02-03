@@ -66,8 +66,8 @@ $$
 \end{bmatrix}
 $$
 
-excluding the trivial case where \\(\vec v \in \mathbb{R^n}\\) is \\(0\\), we can observe that the rows must occupy a subspace whose dimensionality has to be less than \\(n\\). in other words, since \\(\vec v \\) is orthogonal to rows in \\(B\\) no linear combination of those rows can create \\(\vec v \\), a vector in \\(\mathbb{R^n}\\). thus the scaling factor for the volume of hypercuboid represented by \\(\vec v \\) (the determinant) when it is transformed by \\(B\\) is 0 because \\( dims(B) \lt n \\) and the transformation collapses the hypercuboid in some direction.
-hence it follows :
+excluding the trivial case where \\(\vec v \in \mathbb{R^n}\\) is \\(0\\), we can observe that the rows must occupy a subspace whose dimensionality has to be less than \\(n\\). in other words, since \\(\vec v \\) is orthogonal to rows in \\(B\\) no linear combination of those rows can create \\(\vec v \\), a vector in \\(\mathbb{R^n}\\). thus the scaling factor for the volume of hypercuboid represented by \\(\vec v \\) (the determinant), is 0 when it is transformed by \\(B\\), because the dimensionality of \\(B\\) is less than \\(n\\), causing the transformation to collapse the hypercuboid in some direction.
+therefore it follows that:
 $$
 | A - \lambda I | = 0
 $$
