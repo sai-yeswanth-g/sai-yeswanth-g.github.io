@@ -1,16 +1,15 @@
 ---
 title: "Memory Mapping Point Clouds using Z-order curves"
 date: 2025-02-03T22:21:50+05:30
+description: "Some  Description"
 draft: false
 tags: [point-clouds,optimization,interactive]
 categories: [mathematics,3D,programming]
 ---
 
-## The Problem
 While prototyping different algorithms that work on point clouds, I would often run into an issue. although I had point clouds with just a few million points for prototyping, when testing the algorithms on larger clouds, with 100s of millions or billions of points, the applications quickly became memory intensive taking most of available memory (10s of gigabytes).
-
+<!--more-->
 oftentimes the point clouds also come with additional data attached to each point making them resource intensive to work with. so I Looked for ways to optimize ways of loading, querying and storing the point clouds for easier processing.
-
 
 the first thing I did was to separate the xyz coordinate data from the point cloud. one operation I cared the most about and most people would often find themselves doing is getting a cropped section of the pointcloud, like a bounding box crop. 
 
@@ -22,7 +21,7 @@ one thing that became immediately obvious was, to create an Octree or KD-Tree on
 > **_NOTE:_** All the illustrations are in 2D for convenience purposes, the concepts extend naturally to 3D
 
 <img src="images/points_multi_file.png" alt="drawing" style="width:800px;"/>
-which would mean we'd have to load a section of point cloud from multiple files, or we could merge the points from all grid cells into a single file and have an index map for querying. 
+which would mean we'd have to load a section of point cloud from multiple files, or we could merge the points from all grid cells into a single file and have an index map for querying index ranges, using a memory mapped file. 
 
 <img src="images/points_single_file.png" alt="drawing" style="width:800px;"/>
 
@@ -109,7 +108,7 @@ img {
   margin-right: auto;
 }
 </style>
-<img src="featured.png" alt="drawing" style="width:200px;"/>
+<img src="images/z_order_16.png" alt="drawing" style="width:200px;"/>
 
 as you can observe the points closer in 2D are also close to each other along the curve in order **most** of the time and if I wanted to read the points in the cropping box, all the numbers are contiguous and I just need one ranged query to read, from index 0 to 7.
 

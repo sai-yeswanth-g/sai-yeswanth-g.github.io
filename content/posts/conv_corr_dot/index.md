@@ -1,5 +1,6 @@
 ---
 title: "convolution, correlation and the dot product"
+summary: "Ideas that bring the three mathematical operations together and more"
 date: 2024-12-19T21:34:43+05:30
 draft: false
 tags: [mathematics, signal processing]

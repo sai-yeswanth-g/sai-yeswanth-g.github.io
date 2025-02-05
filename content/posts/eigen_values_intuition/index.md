@@ -1,5 +1,6 @@
 ---
 title: "Eigen values intuition"
+summary: "Deducing our way to finding the eigen values and what they do."
 date: 2025-01-14T22:40:41+05:30
 draft: false
 tags: []
