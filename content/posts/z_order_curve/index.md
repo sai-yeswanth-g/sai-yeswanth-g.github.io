@@ -1,22 +1,21 @@
 ---
 title: "Memory Mapping Point Clouds using Z-order curves"
 date: 2025-02-03T22:21:50+05:30
-description: "Some  Description"
+summary: "oftentimes the point clouds also come with additional data attached to each point making them resource intensive to work with. so I Looked for ways to optimize ways of loading, querying and storing the point clouds for easier processing."
 draft: false
 tags: [point-clouds,optimization,interactive]
 categories: [mathematics,3D,programming]
 ---
 
-While prototyping different algorithms that work on point clouds, I would often run into an issue. although I had point clouds with just a few million points for prototyping, when testing the algorithms on larger clouds, with 100s of millions or billions of points, the applications quickly became memory intensive taking most of available memory (10s of gigabytes).
-<!--more-->
+While prototyping different algorithms that work on point clouds, I would often run into an issue. although I had point clouds with just a few million points for prototyping, when testing the algorithms on larger clouds, with 100s of millions or billions of points, the applications quickly became memory intensive taking most of the available memory (10s of gigabytes).
 oftentimes the point clouds also come with additional data attached to each point making them resource intensive to work with. so I Looked for ways to optimize ways of loading, querying and storing the point clouds for easier processing.
 
-the first thing I did was to separate the xyz coordinate data from the point cloud. one operation I cared the most about and most people would often find themselves doing is getting a cropped section of the pointcloud, like a bounding box crop. 
+the first thing I did was to separate the individual data channels from the point cloud such as xyz coordinates, rgb colors, intensity or other associated data that is common with laser scanes. for optimizing spatial queries we just need the xyz data. one operation I cared the most about and most people would often find themselves doing is getting a cropped section of the pointcloud, like a bounding box crop.
 
 ideally we create data structures such as a KD-Tree or an Octree from a pointcloud, that can crop the pointcloud in logarithmic time. but since the whole cloud would have to be loaded in memory, any method that uses in-memory optimization will be resource intensive.
 
 ## Two Approaches
-one thing that became immediately obvious was, to create an Octree or KD-Tree once, break the pointcloud into grid cells. write the grid cells onto disk and use a map to load points dynamically from the disk. we could do this in two ways, either we write points in each grid cell to its own file.
+One immediate realization was to construct an Octree or KD-Tree once, partition the point cloud into grid cells, and store them efficiently on disk.we could do this in two ways, either we write points in each grid cell to its own file.
 
 > **_NOTE:_** All the illustrations are in 2D for convenience purposes, the concepts extend naturally to 3D
 
@@ -128,6 +127,10 @@ putting it all together, we can now sort the points in morton order. group the p
 
 <img src="images/points_morton_order.png" alt="drawing" style="width:500px;"/>
 
-
-
 > **_NOTE:_** more specific implementation details have been skipped.
+
+once I discovered the idea of morton order, I discovered some other applications. morton codes can be used to uniquely index a rectangular region, cube or cuboid in 3-D and a hyper-cube or hyper-cuboid n-dimensions. take the above image for example. if you use the grid cell's center to calculate the morton code, you can use it as a key in a hash map with a pointer to a list containing the points contained in the cell. this idea can be used to construct data structures like linear Quadtrees and Octrees. In some cases using hash lookups can be faster than logarithmic time taking traversal of those trees.
+
+## Additional Resources
+1. [numpy memmap](https://numpy.org/doc/2.1/reference/generated/numpy.memmap.html) a ready-made solution to load memory mapped files as n-d arrays.
+2. [Z-Order Curves - Wikipedia](https://en.wikipedia.org/wiki/Z-order_curve#:~:text=in%20numerical%20order-,Linear%20algebra,access%20to%20the%20memory%20hierarchy.)
