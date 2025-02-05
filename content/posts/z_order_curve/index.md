@@ -109,7 +109,7 @@ img {
   margin-right: auto;
 }
 </style>
-<img src="images/z_order_16.png" alt="drawing" style="width:200px;"/>
+<img src="images/featured.png" alt="drawing" style="width:200px;"/>
 
 as you can observe the points closer in 2D are also close to each other along the curve in order **most** of the time and if I wanted to read the points in the cropping box, all the numbers are contiguous and I just need one ranged query to read, from index 0 to 7.
 
