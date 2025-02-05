@@ -19,10 +19,10 @@ One immediate realization was to construct an Octree or KD-Tree once, partition 
 
 > **_NOTE:_** All the illustrations are in 2D for convenience purposes, the concepts extend naturally to 3D
 
-<img src="images/points_multi_file.png" alt="drawing" style="width:800px;"/>
+<img src="images/points_multi_file.png" alt="drawing" style="width:800px;margin-left: auto; margin-right: auto;display: block;"/>
 which would mean we'd have to load a section of point cloud from multiple files, or we could merge the points from all grid cells into a single file and have an index map for querying index ranges, using a memory mapped file. 
 
-<img src="images/points_single_file.png" alt="drawing" style="width:800px;"/>
+<img src="images/points_single_file.png" alt="drawing" style="width:800px;margin-left: auto; margin-right: auto;display: block;"/>
 
 ## Spatial Locality
 there's one more consideration here. file-IO works faster when the data to be read is contiguous. if we write the point cloud to disk as multiple files, then the reads would be relatively expensive than reading an index range from a single file. is there a way to sort the points such that range queries would on average be contiguous ? can we sort the points or grid cells in such a way that points closer in 3D (or 2D in case of these illustrations ) are also closer when stored as a single array on disk ? can we preserve this property called **Spatial Locality** while saving the points to disk ? Space filling curves do just that. and this is how the idea of a Z-order curve or morton order curve, helped me efficiently process point clouds by improving file-IO and memory requirements of my algorithms.
@@ -35,8 +35,10 @@ in binary representation with two bits, they are 00, 01, 10 and 11
 let's say you want to calculate the morton code for a point in 2D \\((2,3)\\).
 
 ## Calculating Morton Codes
-binary representation of 2 is 10
-binary representation of 3 is 11
+binary representation of 2 is 10.
+
+binary representation of 3 is 11.
+
 to calculate the morton code, we dilate the bits of 2, in other words we make space for the bits of 3 and also dilate the bits of 3.
 $$
 2 = {(\color{lime}{1 \text\_ 0 \text\_})}_b
@@ -100,14 +102,8 @@ y \backslash x &  \color{violet}{0} & \color{violet}{1} & \color{violet}{2} & \c
 \hline
 \end{array}
 $$
-<style>
-img {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-}
-</style>
-<img src="images/z_order_16.png" alt="drawing" style="width:200px;"/>
+
+<img src="images/z_order_16.png" alt="drawing" style="width:200px;margin-left: auto; margin-right: auto;display: block;"/>
 
 as you can observe the points closer in 2D are also close to each other along the curve in order **most** of the time and if I wanted to read the points in the cropping box, all the numbers are contiguous and I just need one ranged query to read, from index 0 to 7.
 
@@ -118,19 +114,19 @@ by default you will only see the points. tap to cycle through different orders o
 
 ## contiguous ordering
 when points are not sorted, all of them are randomly spread across the array at different locations or in different files if they are grouped into grid cells and written into individual files or non contiguous index ranges if the grid cells are grouped into a single file. in the illustration below, if you look at the box crop, then points that are within the box are at different indices, not all contiguous. analogously in practice this could mean that a box crop on a point cloud in 3D might result in reading multiple files or different index ranges ( not necessarily contiguous) if they are written to the same file.
-<img src="images/random_arr.png" alt="drawing" style="width:500px;"/>
+<img src="images/random_arr.png" alt="drawing" style="width:500px;margin-left: auto; margin-right: auto;display: block;"/>
 using morton order this gets mitigated a lot. when points are sorted using their morton codes however, you can see a pattern. not only are the points closer together in space, they are also closer together on the array **MOST** of the time, although in some cases like in the case of points 3 and 8 that are farther apart in the array even though they are closer together in 2D, this ordering is still preferrable because it performs better on average and works for any number of dimensions(3D and more), which is why I said this mitigates the problem by a great deal but we still have corner cases. so if you were to widen the cropping box horizontally, the points 4,5,6,7 will follow 0,1,2,3 and instead of two ranged queries 0-3 and 4-7 you will need just one query 0-7. this is the advantage of using morton order to sort points before storing them because doing so preserves spatial locality. the illustrations are in 2D, but the idea extends to any number of dimensions.
-<img src="images/morton_arr.png" alt="drawing" style="width:500px;"/>
+<img src="images/morton_arr.png" alt="drawing" style="width:500px;margin-left: auto; margin-right: auto;display: block;"/>
 
 
 putting it all together, we can now sort the points in morton order. group the points from grid cells in the same order and write them to disk. we can store index ranges in a separate file. most of the time this ordering would allow for combining multiple index ranges into a single contiguous index range, reducing the time it takes to load the points queried.
 
-<img src="images/points_morton_order.png" alt="drawing" style="width:500px;"/>
+<img src="images/points_morton_order.png" alt="drawing" style="width:500px;margin-left: auto; margin-right: auto;display: block;"/>
 
 > **_NOTE:_** more specific implementation details have been skipped.
 
 once I discovered the idea of morton order, I discovered some other applications. morton codes can be used to uniquely index a rectangular region, cube or cuboid in 3-D and a hyper-cube or hyper-cuboid n-dimensions. take the above image for example. if you use the grid cell's center to calculate the morton code, you can use it as a key in a hash map with a pointer to a list containing the points contained in the cell. this idea can be used to construct data structures like linear Quadtrees and Octrees. In some cases using hash lookups can be faster than logarithmic time taking traversal of those trees.
 
-## Additional Resources
+## Additional Resources and References
 1. [numpy memmap](https://numpy.org/doc/2.1/reference/generated/numpy.memmap.html) a ready-made solution to load memory mapped files as n-d arrays.
 2. [Z-Order Curves - Wikipedia](https://en.wikipedia.org/wiki/Z-order_curve#:~:text=in%20numerical%20order-,Linear%20algebra,access%20to%20the%20memory%20hierarchy.)
